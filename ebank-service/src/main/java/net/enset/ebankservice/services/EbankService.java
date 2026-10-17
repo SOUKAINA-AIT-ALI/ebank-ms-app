@@ -4,7 +4,9 @@ import net.enset.ebankservice.entities.BankAccount;
 import net.enset.ebankservice.repository.BankAccountRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class EbankService {
@@ -25,7 +27,9 @@ public class EbankService {
 
     public BankAccount save(BankAccount bankAccount) {
         // Génération automatique de l'ID et de la date
-       return accountRepository.save(bankAccount);
+        bankAccount.setId(UUID.randomUUID().toString());
+        bankAccount.setCreatedAt(new Date());
+        return accountRepository.save(bankAccount);
 
 
     }
